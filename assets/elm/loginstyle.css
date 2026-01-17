@@ -1,0 +1,35 @@
+element.style {
+}
+.mt-12 {
+    margin-top: 0.1rem;}
+        .dlbox .weixin, .dlbox .reg .login {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background-size: cover;
+        }
+.sss{display: inline-block;width: 32px;height: 32px;background-size: cover;border:0px;}
+        .dlbox .weixin {
+            background-image: url(/index/assets/images/qq.png);
+            
+        }
+
+      .dlbox .login {
+            background-image: url(/index/assets/images/login.png);
+              display: inline-block;
+                  : 32px;
+    height: 32px;
+             background-size: cover;
+  
+}
+   
+		.bg-indigo-100 {
+    background-color: #ebf4ff;
+}.border-gray-200 {
+    border-color: #edf2f7;
+}.bg-gray-100 {
+    background-color: #f7fafc;
+}.bg-indigo-500 {
+    background-color: #667eea;
+}
+
