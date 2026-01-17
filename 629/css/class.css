@@ -1,0 +1,232 @@
+/*
+ * ===================================================
+ *  网课平台管理 - 二次元校园风格美化 (最终整合版)
+ *  作用域: #orderlist (精准定位，防止干扰导航栏)
+ *  功能支持: 分类复合框、折叠面板、一键同步高亮
+ * ===================================================
+ */
+
+/* 1. 核心变量定义 */
+#orderlist {
+  --campus-primary: #a6b8ff;      /* 主题蓝色 */
+  --campus-secondary: #dce4ff;    /* 辅助浅蓝 */
+  --campus-accent: #c3b4fc;       /* 主题紫色 */
+  --campus-success: #76e2ca;      /* 主题绿色 */
+  --campus-danger: #ffb4b4;       /* 主题红色 */
+  --campus-text-dark: #223366;    /* 深色文字 */
+  --campus-text-light: #5566aa;   /* 浅色文字 */
+  --campus-white: #fdfdff;        /* 主题白色 */
+  --campus-bg-gradient: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+  --campus-shadow: 0 8px 20px rgba(166, 184, 255, 0.15);
+  
+  background: var(--campus-bg-gradient);
+  border-radius: 15px;
+  padding: 15px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* 2. 面板与卡片 (卡片式布局) */
+#orderlist .panel.panel-default {
+  background: var(--campus-white);
+  border: 1.5px solid var(--campus-secondary) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--campus-shadow) !important;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+#orderlist .panel-heading {
+  background-color: #fff !important;
+  border-bottom: 1.2px solid var(--campus-secondary) !important;
+  padding: 15px 20px !important;
+  color: var(--campus-text-dark) !important;
+  font-weight: 700 !important;
+}
+
+/* 标题左侧装饰条 */
+#orderlist .panel-heading > div:first-child {
+  background-color: var(--campus-accent) !important;
+  width: 5px !important;
+  border-radius: 4px !important;
+}
+
+/* 3. 表单控件 (分类复合框与输入框) */
+#orderlist .form-control {
+  background-color: #f7faff !important;
+  border: 1.5px solid var(--campus-secondary) !important;
+  border-radius: 8px !important;
+  color: var(--campus-text-dark) !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease;
+  height: 38px;
+}
+
+#orderlist .form-control:focus {
+  border-color: var(--campus-primary) !important;
+  box-shadow: 0 0 8px rgba(166, 184, 255, 0.3) !important;
+}
+
+/* 针对 datalist 复合框的特定样式 */
+#orderlist input[list]::-webkit-calendar-picker-indicator {
+  color: var(--campus-primary);
+  cursor: pointer;
+}
+
+/* 4. 按钮美化 */
+#orderlist .btn {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  border: 1.5px solid transparent !important;
+}
+
+/* 批量上架 */
+#orderlist .btn-success {
+  background-color: #e8f9f5 !important;
+  border-color: var(--campus-success) !important;
+  color: #0b8f74 !important;
+}
+
+/* 批量下架/删除 */
+#orderlist .btn-danger {
+  background-color: #fff0f0 !important;
+  border-color: var(--campus-danger) !important;
+  color: #cc5555 !important;
+}
+
+/* 表格内编辑按钮 - 独特渐变 */
+#orderlist .spss {
+  background: linear-gradient(45deg, var(--campus-primary), var(--campus-accent)) !important;
+  border: none !important;
+  border-radius: 6px !important;
+  color: #fff !important;
+  padding: 5px 12px !important;
+  font-size: 12px !important;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(195, 180, 252, 0.3);
+}
+
+#orderlist .spss:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(195, 180, 252, 0.5);
+}
+
+/* 5. 表格美化 */
+#orderlist .table thead th {
+  background-color: #f4f7ff;
+  border-bottom: 2px solid var(--campus-secondary);
+  color: var(--campus-text-dark);
+  font-size: 13px;
+  padding: 12px 8px;
+}
+
+#orderlist .table tbody tr:hover {
+  background-color: #fafffe !important;
+}
+
+#orderlist .table td {
+  border-top: 1px dashed var(--campus-secondary);
+  vertical-align: middle;
+  font-size: 12.5px;
+}
+
+/* 6. 高级参数折叠区样式 */
+#edit-advanced-params, #add-advanced-params {
+  background: #f9faff !important;
+  padding: 20px !important;
+  border-radius: 12px !important;
+  border: 1.5px dashed var(--campus-primary) !important;
+  margin: 15px 0;
+  box-shadow: inset 0 2px 10px rgba(166, 184, 255, 0.05);
+}
+
+/* 同步项标签高亮 */
+#orderlist .text-primary.font-bold {
+  color: #6a82fb !important;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+/* 7. 分页控件 */
+#orderlist .pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5px;
+}
+
+#orderlist .pagination > li > a {
+  border: 1.5px solid var(--campus-secondary) !important;
+  margin: 0 2px;
+  border-radius: 6px;
+  color: var(--campus-text-light);
+  background: #fff;
+}
+
+#orderlist .pagination > .active > a {
+  background-color: var(--campus-primary) !important;
+  border-color: var(--campus-primary) !important;
+  color: #fff !important;
+}
+
+/* 8. 模态框 (Modal) 深度美化 */
+.modal-content {
+  border-radius: 16px !important;
+  border: 2.5px solid var(--campus-secondary, #dce4ff) !important;
+  box-shadow: 0 15px 45px rgba(166, 184, 255, 0.25) !important;
+  overflow: hidden;
+}
+
+.modal-header {
+  background: #fcfdff;
+  border-bottom: 1.5px solid var(--campus-secondary);
+  padding: 15px 20px;
+}
+
+.modal-title {
+  color: #223366;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.modal-body {
+  padding: 25px;
+}
+
+.modal-footer {
+  background: #fcfdff;
+  border-top: 1.2px solid var(--campus-secondary);
+  padding: 12px 20px;
+}
+
+/* 分隔线美化 */
+#orderlist hr {
+  border-top: 1.5px dashed var(--campus-secondary);
+  margin: 20px 0;
+}
+
+/* 复选框与单选框间距 */
+#orderlist .checkbox-inline, #orderlist .radio-inline {
+  color: var(--campus-text-dark);
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+/* 手机端适配调整 */
+@media (max-width: 768px) {
+  #orderlist .pagination-controls {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+
+/* 统一调整编辑窗口中文本域的高度和字体 */
+#orderlist .modal-body textarea.form-control {
+    height: 120px !important; /* 设置固定高度，或使用 min-height */
+    resize: vertical;         /* 允许用户垂直拉伸 */
+    line-height: 1.6;
+    font-family: "Consolas", "Monaco", monospace; /* 使用等宽字体，输入数组更整齐 */
+    padding: 10px !important;
+}

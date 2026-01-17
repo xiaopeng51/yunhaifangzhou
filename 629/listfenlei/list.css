@@ -1,0 +1,602 @@
+/*
+ * ===================================================================
+ *  项目列表页面专属美化样式 (已移除CSS变量以兼容宝塔编辑器)
+ * ===================================================================
+ */
+
+/* --- 主面板和标题 --- */
+#orderlist .panel.panel-default {
+    border: 1px solid #e8eaf3; /* var(--theme-border-color) */
+    box-shadow: 0 8px 25px rgba(136, 93, 255, 0.15); /* var(--theme-shadow) */
+    border-radius: 16px;
+    background-color: #ffffff; /* var(--theme-panel-bg) */
+    transition: all 0.3s ease;
+}
+
+#orderlist .panel-heading {
+    background-color: transparent !important;
+    border-bottom: 1px solid #e8eaf3; /* var(--theme-border-color) */
+    padding: 15px 20px;
+    font-size: 18px;
+    color: #333; /* var(--theme-text-dark) */
+}
+
+/* 标题前的装饰条 */
+#orderlist .panel-heading div {
+    background-color: #af92ff !important; /* var(--theme-primary-light) */
+    height: 24px !important;
+    margin-top: -2px;
+}
+
+/* --- 搜索表单区域 --- */
+#orderlist .frosss,
+#orderlist .devform input[type="text"] {
+    background-color: #f8f9fe !important; /* var(--theme-bg-light) */
+    border: 1.5px solid #e8eaf3 !important; /* var(--theme-border-color) */
+    border-radius: 10px;
+    padding: 8px 12px;
+    color: #333; /* var(--theme-text-dark) */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin: 5px 5px 5px 0;
+    height: 40px;
+}
+
+#orderlist .frosss:focus,
+#orderlist .devform input[type="text"]:focus {
+    border-color: #885dff !important; /* var(--theme-primary) */
+    box-shadow: 0 0 0 3px rgba(136, 93, 255, 0.2);
+}
+
+/* --- 按钮样式 --- */
+#orderlist .el-button {
+    background-color: #885dff !important; /* var(--theme-primary) */
+    border: none !important;
+    color: white !important;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(136, 93, 255, 0.3);
+}
+
+#orderlist .el-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(136, 93, 255, 0.4);
+}
+
+#orderlist .btn {
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+#orderlist .btn:hover {
+    transform: scale(1.05);
+}
+
+/* --- 表格样式 --- */
+#orderlist .table-responsive {
+    border: none;
+    padding: 0 5px;
+}
+
+#orderlist .table {
+    border-collapse: separate;
+    border-spacing: 0 6px; 
+}
+
+#orderlist .table thead th {
+    background-color: transparent;
+    border: none;
+    color: #777;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 8px 12px;
+}
+
+#orderlist .table tbody tr {
+    /* 将从HTML中移除的样式移到这里 */
+    text-align: center; 
+    
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(220, 225, 240, 0.5);
+    transition: all 0.3s ease;
+}
+
+#orderlist .table tbody tr:hover {
+    /* 【核心修改】设置一个清晰可见的淡紫色背景 */
+    background-color: #f0edff;
+    
+    /* 保留并稍微增强动效，使其更醒目 */
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 6px 16px rgba(136, 93, 255, 0.2); 
+    
+    z-index: 10;
+    position: relative;
+}
+
+#orderlist .table tbody td {
+    padding: 12px;
+    vertical-align: middle;
+    border: none;
+    color: #333;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* 这部分保持不变，用于处理圆角 */
+#orderlist .table tbody tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#orderlist .table tbody tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* --- 状态标签 el-tag 美化 --- */
+#orderlist .el-tag {
+    border-radius: 15px !important;
+    font-weight: 600;
+}
+#orderlist .el-tag--success {
+    background-color: #e9fbf0 !important;
+    border-color: #d2f5e1 !important;
+    color: #269850 !important;
+}
+#orderlist .el-tag--warning {
+    background-color: #fff8e6 !important;
+    border-color: #ffebc2 !important;
+    color: #e6a23c !important;
+}
+#orderlist .el-tag--danger {
+    background-color: #ffeeee !important;
+    border-color: #fde2e2 !important;
+    color: #f56c6c !important;
+}
+#orderlist .el-tag--primary {
+    background-color: #f0edff !important;
+    border-color: #e0d9ff !important;
+    color: #885dff !important;
+}
+
+/* --- 分页样式 --- */
+#orderlist .pagination-circle {
+    padding: 10px 0;
+}
+#orderlist .pagination-circle > li > a,
+#orderlist .pagination-circle > li > span {
+    border: 1.5px solid #e8eaf3; /* var(--theme-border-color) */
+    background-color: #ffffff; /* var(--theme-panel-bg) */
+    color: #777; /* var(--theme-text-light) */
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    line-height: 33px;
+    text-align: center;
+    padding: 0;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+}
+
+#orderlist .pagination-circle > li > a:hover {
+    background-color: #885dff; /* var(--theme-primary) */
+    color: white;
+    border-color: #885dff; /* var(--theme-primary) */
+}
+
+#orderlist .pagination-circle > .active > a,
+#orderlist .pagination-circle > .active > span,
+#orderlist .pagination-circle > .active > a:hover,
+#orderlist .pagination-circle > .active > span:hover,
+#orderlist .pagination-circle > .active > a:focus,
+#orderlist .pagination-circle > .active > span:focus {
+    background-color: #885dff; /* var(--theme-primary) */
+    color: white;
+    border-color: #885dff; /* var(--theme-primary) */
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(136, 93, 255, 0.4);
+}
+
+#orderlist .pagination-circle > .disabled > a,
+#orderlist .pagination-circle > .disabled > a:hover {
+    background-color: #f8f9fe; /* var(--theme-bg-light) */
+    border-color: #e8eaf3; /* var(--theme-border-color) */
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+
+/*
+ * ===================================================================
+ *  工单弹窗专属美化样式 (为兼容宝塔编辑器，已移除CSS变量)
+ * ===================================================================
+ */
+
+/* 1. 弹窗最外层容器 */
+.layui-layer {
+  background-color: #f7faff !important; /* var(--campus-white) */
+  border-radius: 14px !important;
+  box-shadow: 0 8px 15px rgba(102, 136, 255, 0.2) !important; /* var(--campus-shadow) */
+  border: 1.5px solid #dce4ff !important; /* var(--campus-secondary) */
+}
+
+/* 2. 弹窗标题栏 */
+.layui-layer-title {
+    background-color: #a6b8ff !important; /* var(--campus-primary) */
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 0 20px !important;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 2px solid #7b8cff !important;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* 3. 内容区与模板容器 */
+.layui-layer-content {
+    padding: 0 !important;
+}
+.ticket-form-container {
+    padding: 20px 30px !important;
+}
+.ticket-form-container .form-group {
+    margin-bottom: 20px;
+}
+
+/* 4. 表单标签 (label) */
+.ticket-form-container label {
+    color: #223366; /* var(--campus-text-dark) */
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* 5. 用于显示信息的静态文本<p>标签 */
+.ticket-form-container .form-control-static {
+    background-color: #eef2ff;
+    color: #223366; /* var(--campus-text-dark) */
+    border: 1.5px solid #dce4ff; /* var(--campus-secondary) */
+    border-radius: 8px;
+    padding: 10px 15px;
+    min-height: 42px;
+    display: block;
+    word-break: break-all;
+    line-height: 1.5;
+}
+
+/* 6. 问题描述文本域 (textarea) */
+.ticket-form-container textarea.form-control {
+    background: #f7faff !important; /* var(--campus-white) */
+    border: 1.5px solid #dce4ff !important; /* var(--campus-secondary) */
+    color: #223366 !important; /* var(--campus-text-dark) */
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(102, 136, 255, 0.1);
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+.ticket-form-container textarea.form-control:focus {
+    border-color: #5566ff !important; /* var(--campus-focus-border) */
+    box-shadow: 0 0 8px rgba(85, 102, 255, 0.3) !important; /* var(--campus-focus-shadow) */
+}
+
+/* 7. 文件上传区域 (修正版) */
+.ticket-form-container input[type="file"] {
+    width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1;
+}
+.ticket-form-container label[for="ticket-image"].file-upload-wrapper {
+    cursor: pointer; display: inline-flex; align-items: center; transition: all 0.3s ease;
+}
+.ticket-form-container .file-upload-button {
+    background-color: #a6b8ff; /* var(--campus-primary) */
+    color: white; border: none; border-radius: 8px; padding: 8px 18px; font-weight: 600;
+    transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(74, 99, 255, 0.2); white-space: nowrap;
+}
+.ticket-form-container label[for="ticket-image"].file-upload-wrapper:hover .file-upload-button {
+    background-color: #899de6; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(52, 78, 207, 0.3);
+}
+.ticket-form-container .file-name {
+    margin-left: 15px; color: #5566aa; /* var(--campus-text-light) */ font-style: italic; font-size: 13px;
+}
+
+/* 8. 弹窗底部按钮 */
+.layui-layer-btn {
+    padding: 15px 30px !important; text-align: right !important; border-top: 1px solid #dce4ff; /* var(--campus-secondary) */
+}
+.layui-layer-btn a {
+    display: inline-flex !important; align-items: center; justify-content: center; height: 40px;
+    border-radius: 8px !important; font-weight: 700 !important; padding: 0 25px !important;
+    margin-left: 10px !important; transition: all 0.3s ease;
+}
+.layui-layer-btn .layui-layer-btn0 {
+    background-color: #4a63ff !important; border: none !important; box-shadow: 0 4px 8px rgba(74, 99, 255, 0.3) !important;
+}
+.layui-layer-btn .layui-layer-btn0:hover {
+    background-color: #344ecf !important; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(52, 78, 207, 0.4) !important;
+}
+.layui-layer-btn .layui-layer-btn1 {
+    background-color: #f7faff !important; /* var(--campus-white) */
+    border: 1px solid #dce4ff !important; /* var(--campus-secondary) */
+    color: #5566aa !important; /* var(--campus-text-light) */
+}
+.layui-layer-btn .layui-layer-btn1:hover {
+    background-color: #dce4ff !important; /* var(--campus-secondary) */
+    color: #223366 !important; /* var(--campus-text-dark) */
+}
+
+
+
+
+/*
+ * ===================================================================
+ *  Layer.msg 提示框样式美化 (融入“二次元校园风格”)
+ *  说明: 修复布局问题，并使其风格与页面主题统一。
+ * ===================================================================
+ */
+
+/* 
+ * 核心：依然是精确定位 .layui-layer-msg 
+ */
+.layui-layer-msg {
+    min-width: 220px !important; /* 宽度可以适当增加，以容纳内容 */
+    
+    /* 风格统一：使用页面的主题色和样式 */
+    background: linear-gradient(135deg, #f7faff, #eef2ff) !important; /* 使用柔和的渐变背景 */
+    color: #223366 !important; /* var(--campus-text-dark) */
+    border: 1.5px solid #dce4ff !important; /* var(--campus-secondary) */
+    box-shadow: 0 8px 15px rgba(102, 136, 255, 0.2) !important; /* var(--campus-shadow) */
+    border-radius: 12px !important; /* 使用和弹窗一致的圆角 */
+    padding: 0 !important; /* 移除外层padding，由内层控制 */
+}
+
+/* 
+ * 定位到 msg 提示框的内容区域
+ */
+.layui-layer-msg .layui-layer-content {
+    /* 使用 Flex 布局来对齐 */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; /* 从左侧开始对齐，而不是居中 */
+    padding: 12px 20px !important; /* 设置舒适的内边距 */
+    line-height: 1.5 !important;
+    font-weight: 600; /* 字体加粗，更清晰 */
+}
+
+/* 
+ * 定位到 msg 提示框中的图标
+ */
+.layui-layer-msg .layui-layer-ico {
+    margin-right: 12px !important; /* 图标与文字的间距 */
+    
+    /* 覆盖可能被污染的尺寸和位置样式 */
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    flex-shrink: 0; /* 防止图标在空间不足时被压缩 */
+
+    /* 放大图标，使其更显眼 */
+    transform: scale(1.2); 
+}
+
+/* 
+ * 针对不同类型的图标，赋予主题色彩
+ * layer.js 会为不同类型的msg添加 layui-layer-ico1, layui-layer-ico2 等类名
+ */
+ 
+/* 成功图标 (√) */
+.layui-layer-msg .layui-layer-ico1 {
+    color: #28a745; 
+}
+
+/* 错误图标 (×) */
+.layui-layer-msg .layui-layer-ico2 {
+    color: #dc3545;
+}
+
+/* 问号图标 (?) */
+.layui-layer-msg .layui-layer-ico3 {
+    color: #5566aa;
+}
+
+/* 锁图标 */
+.layui-layer-msg .layui-layer-ico4 {
+    color: #ffc107;
+}
+
+/* 哭脸图标 */
+.layui-layer-msg .layui-layer-ico5 {
+    color: #ff7f50;
+}
+
+/* 笑脸图标 */
+.layui-layer-msg .layui-layer-ico6 {
+    color: #28a745;
+}
+
+/* 警告图标 (!) */
+.layui-layer-msg .layui-layer-ico7 {
+    color: #ffc107;
+}
+
+
+
+/* 日志弹窗内条目样式 */
+.log-item {
+    background-color: #f8f9fa; /* 更淡的背景色 */
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* 日志条目的头部，用于放置时间和进度 */
+.log-item-header {
+    display: flex;
+    justify-content: space-between; /* 两端对齐 */
+    align-items: center;
+    margin-bottom: 8px;
+    color: #6c757d; /* 灰色文字 */
+    font-size: 12px;
+}
+
+/* 日志进度样式 */
+.log-progress {
+    font-weight: bold;
+    color: #28a745; /* 绿色 */
+    background-color: #e9f7ec;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* 日志主要内容（课程名） */
+.log-item-content {
+    color: #343a40; /* 深灰色 */
+    word-break: break-word; /* 允许长单词换行 */
+}
+
+/* 最后一条日志不需要下外边距 */
+.log-item:last-child {
+    margin-bottom: 0;
+}
+
+
+/*
+ * ===================================================================
+ *  管理员专属快捷操作按钮样式 (修正版)
+ *  增加了选择器优先级并使用 !important 来覆盖默认样式
+ * ===================================================================
+ */
+
+#orderlist .admin-quick-btn {
+    color: #fff !important;             /* 强制文字颜色为白色 */
+    transition: all 0.2s ease-in-out;   /* 添加平滑的过渡效果 */
+    border: none !important;            /* 移除 is-plain 样式带来的边框 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 添加轻微的立体感阴影 */
+}
+#orderlist .admin-quick-btn:hover {
+    transform: translateY(-1px); /* 鼠标悬浮时轻微上移 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* 蓝色 (用于 "处理中" 或信息类操作) */
+#orderlist .admin-quick-btn.admin-btn--blue {
+    background-color: #3498db !important;
+}
+#orderlist .admin-quick-btn.admin-btn--blue:hover {
+    background-color: #2980b9 !important;
+}
+
+/* 绿色 (用于 "完成" 或成功类操作) */
+#orderlist .admin-quick-btn.admin-btn--green {
+    background-color: #2ecc71 !important;
+}
+#orderlist .admin-quick-btn.admin-btn--green:hover {
+    background-color: #27ae60 !important;
+}
+
+/* 橙色 (用于 "进行中" 或警告类操作) */
+#orderlist .admin-quick-btn.admin-btn--orange {
+    background-color: #f39c12 !important;
+}
+#orderlist .admin-quick-btn.admin-btn--orange:hover {
+    background-color: #e67e22 !important;
+}
+
+/* 红色 (用于 "异常" 或失败类操作) */
+#orderlist .admin-quick-btn.admin-btn--red {
+    background-color: #e74c3c !important;
+}
+#orderlist .admin-quick-btn.admin-btn--red:hover {
+    background-color: #c0392b !important;
+}
+
+/* 深红色 (用于 "删除/退款" 等危险操作，更加醒目) */
+#orderlist .admin-quick-btn.admin-btn--danger {
+    background-color: #c0392b !important;
+    font-weight: bold;
+}
+#orderlist .admin-quick-btn.admin-btn--danger:hover {
+    background-color: #a93226 !important;
+}
+
+/* 灰色 (用于 "取消" 或中性操作) */
+#orderlist .admin-quick-btn.admin-btn--grey {
+    background-color: #95a5a6 !important;
+}
+#orderlist .admin-quick-btn.admin-btn--grey:hover {
+    background-color: #7f8c8d !important;
+}
+
+
+
+/* --- 分页自定义数量输入框美化 --- */
+
+/* 1. 确保分页条目横向排列 */
+#orderlist .pagination-circle {
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* 2. 重置 li 的样式，防止 bootstrap 干扰 */
+#orderlist .page-sizer-item {
+    float: none !important;
+    display: inline-block;
+    margin-right: 10px; /* 与首页按钮的间距 */
+    vertical-align: middle;
+}
+
+/* 3. 胶囊容器样式 */
+#orderlist .page-sizer-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px; /* 与页码按钮高度保持一致 */
+    background-color: #ffffff;
+    border: 1.5px solid #e8eaf3; /* 主题边框色 */
+    border-radius: 18px; /* 圆角胶囊形状 */
+    padding: 0 12px;
+    transition: all 0.3s ease;
+}
+
+/* 悬停效果 */
+#orderlist .page-sizer-wrapper:hover,
+#orderlist .page-sizer-wrapper:focus-within {
+    border-color: #885dff; /* 主题色 */
+    box-shadow: 0 4px 10px rgba(136, 93, 255, 0.15);
+}
+
+/* 4. 文字样式 */
+#orderlist .page-sizer-wrapper .text {
+    font-size: 12px;
+    color: #777;
+    white-space: nowrap;
+}
+
+/* 5. 输入框本体样式 */
+#orderlist .page-sizer-wrapper .page-input {
+    width: 40px;
+    height: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-weight: bold;
+    color: #885dff; /* 数字显示为主题色 */
+    font-size: 13px;
+    padding: 0;
+    margin: 0 5px;
+    outline: none; /* 去除点击时的默认蓝框 */
+    -moz-appearance: textfield; /* 火狐去箭头 */
+}
+
+/* 谷歌浏览器去箭头 */
+#orderlist .page-sizer-wrapper .page-input::-webkit-outer-spin-button,
+#orderlist .page-sizer-wrapper .page-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

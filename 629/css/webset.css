@@ -1,0 +1,237 @@
+/* webset.css - 系统设置页面专属样式 */
+
+:root {
+  --primary: #a6b8ff;
+  --primary-hover: #8c9eff;
+  --text-dark: #223366;
+  --text-light: #6c757d;
+  --bg-card: #ffffff;
+  --bg-body: #f7faff;
+  --border-color: #eff2f7;
+  --shadow: 0 8px 25px rgba(166, 184, 255, 0.15);
+  --radius: 12px;
+}
+
+/* 全局容器 */
+#webset-app {
+    padding: 20px;
+    font-family: 'Microsoft YaHei', sans-serif;
+    color: var(--text-dark);
+}
+
+/* 卡片通用样式 */
+.setting-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 18px 25px;
+    background: linear-gradient(to right, #fff, #fbfdff);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-bar {
+    width: 4px;
+    height: 18px;
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* 表单元素美化 */
+.form-control-custom {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-size: 14px;
+    color: #495057;
+}
+.form-control-custom:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(166, 184, 255, 0.2);
+    outline: none;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.control-label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    display: block;
+}
+
+/* 按钮美化 */
+.btn-save {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(166, 184, 255, 0.4);
+}
+.btn-save:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+.btn-add {
+    background: linear-gradient(135deg, #66bb6a, #43a047);
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* 公告列表 (折叠手风琴) */
+.notice-list {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+.notice-item {
+    border-bottom: 1px solid var(--border-color);
+    background: #fff;
+    transition: background 0.2s;
+}
+.notice-item:last-child {
+    border-bottom: none;
+}
+
+/* 列表头部 */
+.notice-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    cursor: pointer;
+}
+.notice-header:hover {
+    background-color: #f8faff;
+}
+.notice-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.badge-top { background: #ffebee; color: #e53935; }
+.badge-normal { background: #e3f2fd; color: #1e88e5; }
+.badge-hidden { background: #eceff1; color: #78909c; }
+.notice-date {
+    color: #999;
+    font-size: 13px;
+}
+
+/* 列表内容区 (展开后) */
+.notice-content-box {
+    background-color: #fcfdfe;
+    border-top: 1px dashed var(--border-color);
+    padding: 20px;
+}
+.notice-text-view {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    color: #555;
+    line-height: 1.6;
+}
+.notice-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.btn-action {
+    padding: 6px 15px;
+    border-radius: 6px;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-edit { background: #e0e7ff; color: #5c6bc0; }
+.btn-edit:hover { background: #c5cae9; }
+.btn-del { background: #ffebee; color: #e53935; }
+.btn-del:hover { background: #ffcdd2; }
+
+/* 弹窗表单样式 */
+.modal-form-row { margin-bottom: 15px; }
+.modal-label { display: block; margin-bottom: 5px; font-weight: bold; }
+
+
+/* =========================================
+   新增：公告内容图片专属样式 (完整显示 + 统一高度四宫格)
+   适配后台预览容器：.notice-text-view
+   ========================================= */
+
+/* 1. 外层容器：清除浮动，防止布局塌陷 */
+.notice-text-view {
+    overflow: hidden; 
+    padding-bottom: 5px;
+    /* 保留原有的内边距和背景设置，这里只追加清除浮动 */
+}
+
+/* 2. 图片样式 */
+.notice-text-view img {
+    /* --- 布局：左浮动实现并排 --- */
+    float: left;
+    box-sizing: border-box;
+    
+    /* --- 宽高设置 (雷打不动) --- */
+    width: 49%;                 /* 宽度占一半 */
+    height: 200px;              /* 【关键】统一高度！不管图多长，格子就这么高 */
+    margin: 5px 0.5%;           /* 间距 */
+    
+    /* --- 显示模式 (核心) --- */
+    /* contain: 意思是"包含"。它会把图片等比例缩小，直到完整的显示在格子里，绝不剪切！ */
+    object-fit: contain;        
+    
+    /* --- 装饰 (弥补空白) --- */
+    /* 因为图片缩小后旁边会有空隙，我们加个背景色，让它看起来是一个完整的格子 */
+    background-color: #f5f5f5;  
+    
+    border: 1px solid #e0e0e0;  
+    border-radius: 6px;         
+    cursor: pointer;            
+}
+
+/* --- 移动端适配 --- */
+@media (max-width: 480px) {
+    .notice-text-view img {
+        /* 手机上依然保持并排，如果想一行一个就把 width 改成 98% */
+        width: 48%; 
+        height: 150px; /* 手机上格子稍微矮一点 */
+        margin: 5px 1%;
+    }
+}

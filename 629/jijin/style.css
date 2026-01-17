@@ -1,0 +1,232 @@
+/* jijin/style.css - “二次元金融社团”深度美化主题 */
+
+/*
+ * =========================================
+ *  灵感来源：二次元校园风格
+ *  核心色板：
+ *  - 主色蓝 (Primary): #a6b8ff -> #8a9dff (稍加饱和度)
+ *  - 辅助色蓝 (Secondary): #dce4ff -> #e6eaff
+ *  - 点缀金 (Accent Gold): #f9d89c
+ *  - 文字色 (Text): #223366 -> #3d4a81 (柔和的深蓝紫)
+ * =========================================
+ */
+
+/* 1. 页面整体背景和容器 */
+body {
+    /* 如果您的框架背景是白色，这个可能不明显，但作为基础 */
+    background-color: #f0f4ff;
+}
+#licai {
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    color: #3d4a81; /* 默认文字颜色 */
+}
+#licai.container {
+    background: transparent;
+    padding-top: 20px; /* 给内容区一点顶部空间 */
+}
+
+
+/* 2. 公告区域 - "社团活动公告板" */
+#licai .academy-notice {
+    background: linear-gradient(135deg, #ffffff 0%, #f7faff 100%);
+    border: 2px solid #dce4ff;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 30px;
+    color: #5566aa;
+    line-height: 1.8;
+    box-shadow: 0 8px 25px rgba(102, 136, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+/* 公告板上的小装饰 */
+#licai .academy-notice::before {
+    content: '公告 NOTICE';
+    position: absolute;
+    top: -1px;
+    left: 20px;
+    background: #a6b8ff;
+    color: white;
+    padding: 2px 12px;
+    border-radius: 0 0 8px 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+#licai .academy-notice strong {
+    font-size: 18px;
+    color: #4a63ff;
+    display: block;
+    margin-bottom: 8px;
+}
+
+
+/* 3. 标签页 (Tabs) - "课程表" */
+#licai .el-tabs {
+    background: transparent; /* 不再需要背景板 */
+}
+#licai .el-tabs__header {
+    margin-bottom: 25px;
+    background: white;
+    padding: 5px 10px;
+    border-radius: 25px; /* 胶囊形状的标签栏 */
+    box-shadow: 0 4px 15px rgba(102, 136, 255, 0.1);
+    border: 1px solid #e6eaff;
+}
+#licai .el-tabs__nav-wrap::after {
+    display: none; /* 移除底部分割线 */
+}
+#licai .el-tabs__item {
+    font-size: 15px;
+    font-weight: 600;
+    color: #5566aa;
+    border-radius: 20px;
+    padding: 0 25px !important;
+    transition: all 0.3s ease;
+}
+#licai .el-tabs__item:hover {
+    color: #4a63ff;
+}
+#licai .el-tabs__item.is-active {
+    color: white;
+    background: linear-gradient(45deg, #8a9dff, #a6b8ff);
+    box-shadow: 0 4px 10px rgba(138, 157, 255, 0.5);
+}
+#licai .el-tabs__active-bar {
+    display: none; /* 激活状态由背景色体现，不再需要下划线 */
+}
+
+
+/* 4. 卡片 (Card) - "课题研究资料" */
+#licai .el-card {
+    background: white;
+    border: 1px solid #e6eaff;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(102, 136, 255, 0.08);
+}
+#licai .el-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(102, 136, 255, 0.2);
+}
+#licai .el-card__header {
+    background: transparent;
+    border-bottom: 1px dashed #dce4ff;
+    padding: 20px 25px;
+}
+#licai .el-card__header .clearfix span {
+    color: #3d4a81;
+    font-size: 20px !important;
+    font-weight: bold;
+    /* 增加一个小图标 */
+    display: flex;
+    align-items: center;
+}
+#licai .el-card__header .clearfix span::before {
+    content: '💰'; /* 或者用FontAwesome等图标库 */
+    margin-right: 10px;
+    font-size: 22px;
+}
+#licai .el-card__body {
+    padding: 25px;
+    color: #5566aa;
+}
+#licai .el-card hr {
+    border-color: #e6eaff !important;
+}
+
+
+/* 5. 按钮 (Button) - "可爱的操作按钮" */
+#licai .el-button {
+    border-radius: 12px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 12px 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+/* 主要按钮 */
+#licai .el-button--primary {
+    background: linear-gradient(45deg, #4a63ff, #6f85ff);
+    color: white;
+}
+#licai .el-button--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(74, 99, 255, 0.4);
+}
+/* 次要按钮 */
+#licai .el-button--primary.is-plain {
+    background: #eef2ff;
+    color: #4a63ff;
+}
+#licai .el-button--primary.is-plain:hover {
+    background: #dce4ff;
+}
+/* 钱包页按钮 */
+#licai .el-button--warning { /* 充值 */
+    background: linear-gradient(45deg, #ffc876, #f9d89c);
+    color: #7b5b1e;
+}
+#licai .el-button--success { /* 提现 */
+    background: linear-gradient(45deg, #82d16d, #a5e096);
+    color: #2b611e;
+}
+
+
+/* 6. 弹窗 (Dialog) - "弹出式便签" */
+.el-dialog__wrapper {
+    backdrop-filter: blur(5px);
+}
+.el-dialog {
+    border-radius: 20px !important;
+    box-shadow: 0 10px 40px rgba(102, 136, 255, 0.2);
+    border: 2px solid white;
+    background: #f7faff;
+}
+.el-dialog__header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #e6eaff;
+    background: transparent;
+}
+.el-dialog__title {
+    font-size: 18px;
+    color: #3d4a81;
+    font-weight: bold;
+}
+.el-dialog__body {
+    padding: 25px 30px;
+    color: #5566aa;
+}
+.el-dialog__footer {
+    padding: 15px 25px;
+    border-top: 1px solid #e6eaff;
+}
+/* 弹窗内的输入框 */
+#licai .el-input-group__prepend {
+    background-color: #eef2ff;
+    border-color: #dce4ff;
+    color: #5566aa;
+    border-radius: 8px 0 0 8px;
+}
+#licai .el-input__inner {
+    background-color: white;
+    border-color: #dce4ff;
+    color: #3d4a81;
+    border-radius: 8px;
+    height: 42px;
+    line-height: 42px;
+}
+#licai .el-input__inner:focus {
+    border-color: #8a9dff;
+    box-shadow: 0 0 8px rgba(138, 157, 255, 0.3);
+}
+
+
+/* 7. 空状态 (Empty) 样式 */
+#licai .el-empty__image {
+    /* 如果可以，可以替换成一个二次元风格的空盒子图片 */
+    opacity: 0.7;
+}
+#licai .el-empty__description p {
+    color: #8b9bb4;
+    font-size: 16px;
+}

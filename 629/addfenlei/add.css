@@ -1,0 +1,647 @@
+/*
+ * ===================================================
+ *  项目查询页面 - 二次元校园风格美化 (最终注释版)
+ *  作者: 您的AI助手
+ *  版本: 1.0
+ *  说明: 此样式表结构清晰，注释详尽，方便未来维护。
+ * ===================================================
+ */
+
+
+/*
+ * -------------------------------------------
+ *  1. 全局样式定义区
+ * -------------------------------------------
+ *  作用: 定义整个页面的基础设定，如颜色变量、整体缩放等。
+ */
+
+/* 1.1) 颜色与阴影变量 */
+/* 说明: 将常用颜色、阴影等定义为变量，方便全局统一修改。 */
+#add {
+  --campus-primary: #a6b8ff;      /* 主题蓝色: 用于边框、未选中状态等 */
+  --campus-secondary: #dce4ff;    /* 辅助浅蓝: 用于边框、悬停背景等 */
+  --campus-accent: #c3b4fc;        /* 主题紫色: 用于"提交"按钮、选中状态等 */
+  --campus-success: #76e2ca;       /* 主题绿色: 用于"查询"按钮、成功状态等 */
+  --campus-text-dark: #223366;     /* 深色文字: 用于主要标题和内容 */
+  --campus-text-light: #5566aa;    /* 浅色文字: 用于辅助信息和提示 */
+  --campus-white: #fdfdff;         /* 主题白色: 用于面板背景 */
+  --campus-bg-gradient: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%); /* 全局背景渐变 */
+  --campus-shadow: 0 8px 15px rgba(102, 136, 255, 0.15); /* 柔和阴影 */
+  --campus-shadow-deep: 0 10px 20px rgba(102, 136, 255, 0.2); /* 较深阴影 */
+}
+
+/* 1.2) 页面主容器 */
+/* 说明: 控制整个内容区域的背景、内边距和整体缩放。 */
+#add.wrapper-md {
+  transform: scale(0.95);             /* 将页面整体缩小5% */
+  transform-origin: top center;       /* 以顶部中心为缩放点，防止上方出现空白 */
+  background: var(--campus-bg-gradient); /* 应用背景渐变 */
+  padding: 20px;
+  border-radius: 15px;
+}
+
+
+/*
+ * -------------------------------------------
+ *  2. 页面布局与面板样式
+ * -------------------------------------------
+ *  作用: 定义页面中主要板块（面板）的通用外观。
+ */
+
+/* 2.1) 面板通用样式 */
+/* 说明: 这是页面中所有白色卡片（如“项目查询”、“查询结果”）的基础样式。 */
+#add .panel.panel-default {
+  background: var(--campus-white);
+  border: 1.5px solid var(--campus-secondary);
+  border-radius: 14px;
+  box-shadow: var(--campus-shadow) !important;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+/* 2.2) 面板标题 */
+/* 说明: 控制面板顶部的标题行样式，包括那个紫色的装饰条。 */
+#add .panel-heading {
+  background-color: transparent !important;
+  color: var(--campus-text-dark);
+  font-weight: 700;
+  font-size: 16px;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--campus-secondary);
+  border-radius: 12px 12px 0 0 !important;
+}
+#add .panel-heading > div:first-child {
+  background-color: var(--campus-accent) !important;
+}
+
+
+/*
+ * -------------------------------------------
+ *  3. 表单元素样式
+ * -------------------------------------------
+ *  作用: 美化页面中所有的输入框、下拉菜单、按钮等交互元素。
+ */
+
+/* 3.1) 表单标签 (如 "项目类别", "项目填写") */
+#add .control-label {
+  color: var(--campus-text-dark);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 保证 select 框宽度 */
+#add .el-select {
+    width: 100%;        /* 选择框本身 */
+}
+
+/* 下拉列表固定宽度或最大宽度 */
+#add .el-select-dropdown {
+    max-width: 100% !important;  /* 不超过父容器宽度 */
+    min-width: 0 !important;     /* 避免自动撑开 */
+}
+
+/* 下拉列表项 */
+#add .el-select-dropdown .el-select-dropdown__item {
+    white-space: nowrap;       /* 不换行 */
+    overflow: hidden;          /* 超出隐藏 */
+    text-overflow: ellipsis;   /* 显示省略号 */
+}
+
+
+
+/* 3.2) 输入框和文本域 */
+#add .el-input__inner,
+#add .frosss2 {
+  background-color: #f7faff !important;
+  color: var(--campus-text-dark) !important;
+  border: 1.5px solid var(--campus-secondary) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  /* 新增：宽度设置为100%，使其自动填满父容器，从而与上方的“项目名称”选择框宽度一致 */
+  width: 100%;
+}
+
+/* 针对“信息填写”文本域(textarea)的特定样式 */
+#add .frosss2 {
+    /* 推荐的最小高度，与原先设置的100px保持一致 */
+    min-height: 100px;
+    /* 关键属性：允许用户仅在垂直方向上拖拽调整输入框的高度 */
+    resize: vertical;
+}
+
+
+#add .el-input__inner:focus,
+#add .frosss2:focus {
+  border-color: var(--campus-primary) !important;
+  box-shadow: 0 0 8px rgba(166, 184, 255, 0.5) !important;
+}
+
+/* 3.3) Element UI 下拉选择框 */
+#add #select.el-select {
+  background-image: none !important; /* 移除自带的箭头背景图 */
+}
+
+/* 3.4) 提示信息框 (红色和蓝色的提示条) */
+#add .alert {
+  border-radius: 8px;
+  border-width: 1.5px;
+  padding: 15px;
+}
+#add .alert-danger {
+  background-color: #ffeef0;
+  border-color: #ffcdd2;
+  color: #c62828 !important;
+}
+#add .alert-danger strong {
+  color: #b71c1c;
+}
+#add .alert-info {
+  background-color: #e3f2fd;
+  border-color: #bbdefb;
+  color: #0d47a1;
+}
+
+/* 3.5) 主要操作按钮 (查询, 提交, 清空) */
+#add .el-button {
+  border-radius: 8px !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  border: 1.5px solid transparent !important;
+  background-clip: padding-box;
+}
+#add .el-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+/* "查询" 按钮 */
+#add .el-button--success.is-plain {
+  background-color: #e8f9f5 !important;
+  border-color: var(--campus-success) !important;
+  color: #0b8f74 !important;
+}
+#add .el-button--success.is-plain:hover {
+  background-color: #d6f2ea !important;
+  color: #086b57 !important;
+}
+/* "提交" 按钮 */
+#add .el-button--primary.is-plain {
+  background-color: #f4f0ff !important;
+  border-color: var(--campus-accent) !important;
+  color: #8a6cff !important;
+}
+#add .el-button--primary.is-plain:hover {
+  background-color: #e9e1ff !important;
+  color: #7953ff !important;
+}
+/* "清空" 按钮 */
+#add input[type="reset"].el-button--primary {
+  background: #f0f2f5 !important;
+  color: var(--campus-text-light) !important;
+  border: 1.5px solid #dcdfe6 !important;
+}
+#add input[type="reset"].el-button--primary:hover {
+  filter: none;
+  background-color: #e9ecef !important;
+  color: var(--campus-text-dark) !important;
+  border-color: #d1d9e6 !important;
+}
+
+/* 3.6) "类型选择" 的胶囊单选按钮 */
+#add .radio-options-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 15px;
+}
+#add .radio-options-container .lyear-radio.radio-inline {
+  margin: 0 !important;
+  padding: 5px 15px;
+  background-color: #f7faff;
+  border: 1.5px solid var(--campus-secondary);
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+#add .radio-options-container .lyear-radio.radio-inline:hover {
+  border-color: var(--campus-primary);
+  background-color: #eff3ff;
+}
+/* 隐藏Lyear框架自带的单选框圆点 */
+#add .radio-options-container .lyear-radio.radio-inline span::before,
+#add .radio-options-container .lyear-radio.radio-inline span::after {
+  display: none !important;
+}
+#add .radio-options-container .lyear-radio.radio-inline span {
+  padding-left: 0 !important;
+}
+/* 选中时的胶囊样式 */
+#add .radio-options-container .lyear-radio.radio-inline:has(input:checked) {
+  background-color: var(--campus-accent);
+  border-color: var(--campus-accent);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(175, 146, 255, 0.4);
+}
+
+
+/*
+ * -------------------------------------------
+ *  4. 查询结果区域样式
+ * -------------------------------------------
+ *  作用: 美化查询结果的列表，包括标题、列表项和复选框。
+ */
+
+/* 4.1) "全选" 按钮 */
+#add a.el-button--mini.el-button--success.is-plain {
+  background-color: #e8f9f5 !important;
+  border-color: var(--campus-success) !important;
+  color: #0b8f74 !important;
+  font-weight: 600;
+  padding: 5px 12px !important;
+  border-radius: 6px !important;
+  border-width: 1.5px !important;
+  border-style: solid !important;
+  transition: all 0.3s ease;
+}
+#add a.el-button--mini.el-button--success.is-plain:hover {
+  background-color: #d6f2ea !important;
+  color: #086b57 !important;
+}
+
+/* 4.2) 折叠列表的标题行 (显示用户名和查课状态) */
+#add #accordion .panel-heading {
+  background-color: #f7faff !important;
+  transition: background-color 0.3s ease;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#add #accordion .panel-heading:hover {
+  background-color: #eff3ff !important;
+}
+#add #accordion .panel-heading a {
+  text-decoration: none;
+  color: #000 !important;
+  display: block;
+  font-weight: 400;
+  font-size: 13px;
+}
+/* 用户名加粗并使用特殊颜色 */
+#add #accordion .panel-heading a b {
+  color: var(--campus-text-dark) !important;
+  font-weight: 700 !important;
+  margin-right: 10px;
+}
+#add #accordion .panel-heading a[aria-expanded="true"] {
+  /* 可以为展开的标题行设置特殊样式，此处暂不设置 */
+}
+
+/* 4.3) 折叠列表的内容区 (课程列表) */
+#add #accordion .panel-body {
+  background-color: var(--campus-white);
+  padding: 5px 15px; /* 减少上下内边距，让列表更紧凑 */
+}
+#add #accordion .panel-body li {
+  list-style: none;
+  padding: 6px 5px; /* 减小每行内部的上下空间 */
+  margin: 0;        /* 移除行间距 */
+  border-bottom: 1px dashed var(--campus-secondary);
+  transition: background-color 0.2s;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; /* 核心：垂直居中对齐所有内容 */
+  gap: 5px 15px;       /* 设置各项之间的水平间距 */
+}
+#add #accordion .panel-body li:last-child {
+  border-bottom: none;
+}
+#add #accordion .panel-body li:hover {
+  background-color: #f7faff;
+}
+/* 防止复选框被意外压缩 */
+#add #accordion .panel-body li .lyear-checkbox {
+  flex-shrink: 0;
+}
+
+/* 4.4) 课程列表内的文本样式 */
+/* 课程名 (红色文字) */
+#add #accordion .panel-body li span[style*="darkred"] {
+  color: #c62828 !important;
+  font-weight: 700;
+  font-size: 14px;
+  background-color: transparent !important; /* 确保无背景色 */
+  white-space: nowrap;
+}
+/* 其他信息 (课程ID, 老师等) */
+#add #accordion .panel-body li span[v-if] {
+  font-size: 13px;
+  color: var(--campus-text-light);
+  background-color: transparent !important; /* 确保无背景色 */
+  white-space: nowrap;
+}
+
+/* 4.5) 课程列表内的自定义复选框 */
+#add #accordion .lyear-checkbox.checkbox-inline {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#add #accordion .lyear-checkbox input[type="checkbox"] {
+  display: none; /* 隐藏原始的丑陋复选框 */
+}
+#add #accordion .lyear-checkbox input[type="checkbox"] + label {
+  position: relative;
+  padding-left: 28px;
+  line-height: 20px;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+}
+/* 绘制未选中的方框 */
+#add #accordion .lyear-checkbox input[type="checkbox"] + label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--campus-primary);
+  background-color: #f7faff;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+/* 绘制选中时的对勾 */
+#add #accordion .lyear-checkbox input[type="checkbox"]:checked + label::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 3px;
+  width: 6px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  transition: all 0.2s ease;
+}
+/* 选中时改变方框背景色 */
+#add #accordion .lyear-checkbox input[type="checkbox"]:checked + label::before {
+  background-color: var(--campus-success);
+  border-color: var(--campus-success);
+}
+
+
+/*
+ * -------------------------------------------
+ *  5. Element UI 动态生成组件样式
+ * -------------------------------------------
+ *  作用: 美化那些由JS动态创建并插入到<body>标签下的组件，如弹出的下拉菜单。
+ *  注意: 这部分样式不能加 #add 前缀，因为它们不在 #add 容器内。
+ */
+
+/* 5.1) 下拉菜单的整体样式 */
+.el-select-dropdown {
+  border-radius: 10px !important;
+  border: 1.5px solid var(--campus-secondary, #dce4ff) !important;
+  background-color: var(--campus-white, #fdfdff) !important;
+  box-shadow: var(--campus-shadow-deep, 0 10px 20px rgba(102, 136, 255, 0.2)) !important;
+}
+
+/* 5.2) 下拉菜单的选项样式 */
+.el-select-dropdown__item {
+  color: var(--campus-text-light, #5566aa);
+}
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover {
+  background-color: var(--campus-secondary, #dce4ff) !important;
+  color: var(--campus-text-dark, #223366) !important;
+}
+.el-select-dropdown__item.selected {
+  color: var(--campus-accent, #af92ff) !important;
+  font-weight: 700;
+}
+
+
+
+/*
+ * -------------------------------------------
+ *  6. 项目说明区域样式 (最终版 V2 - 精准靶向)
+ * -------------------------------------------
+ */
+
+/* 6.1) 项目说明信息框主容器 */
+/* 核心修改：选择器现在是 #add .alert.alert-info.dynamic-description-wrapper */
+/* 这意味着，只有同时拥有 .alert-info 和 .dynamic-description-wrapper 类的元素才会应用此样式 */
+#add .alert.alert-info.dynamic-description-wrapper[role="alert"] {
+  background-image: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%) !important;
+  border: 1.5px solid var(--campus-primary) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.8), var(--campus-shadow) !important;
+  padding: 18px 22px !important;
+  transition: all 0.4s ease-in-out;
+}
+
+/* 6.2) 项目说明的内容区域 */
+#add .alert.alert-info.dynamic-description-wrapper[role="alert"] .description-content {
+  color: var(--campus-text-light) !important;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+/* 6.3) 针对内容中可能存在的标签进行优化 */
+#add .alert.alert-info.dynamic-description-wrapper[role="alert"] .description-content strong,
+#add .alert.alert-info.dynamic-description-wrapper[role="alert"] .description-content b {
+  color: var(--campus-text-dark) !important;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+}
+
+#add .alert.alert-info.dynamic-description-wrapper[role="alert"] .description-content ul,
+#add .alert.alert-info.dynamic-description-wrapper[role="alert"] .description-content ol {
+  padding-left: 25px;
+  margin-top: 8px;
+}
+
+#add .alert.alert-info.dynamic-description-wrapper[role="alert"] .description-content li {
+  margin-bottom: 6px;
+}
+
+/* 6.4) 美化从 v-html 内部渲染出来的 <span> */
+#add .alert.alert-info.dynamic-description-wrapper[role="alert"] .description-content span {
+    font-size: inherit !important;
+    color: inherit !important;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+
+
+/*
+ * -------------------------------------------
+ *  7. 自定义iframe弹窗样式 (二次元校园风格)
+ * -------------------------------------------
+ *  作用: 美化通过 layer.open 打开的自定义HTML弹窗，使其与页面整体风格保持高度一致。
+ *  注意: 这部分样式同样不能加 #add 前缀，因为弹窗元素位于<body>直属层级。
+ */
+
+/* 7.1) 弹窗最外层容器 */
+/* 说明: 这是由 layer.js 生成的弹窗最外层，我们通过JS为其添加了 'my-special-layer' 类。
+        这里我们为其添加柔和的过渡动画和阴影，使其出现和消失更自然。 */
+.layui-layer.my-special-layer {
+  border: 1.5px solid var(--campus-secondary, #dce4ff) !important;
+  border-radius: 14px !important; /* 与页面面板的圆角保持一致 */
+  background-color: transparent !important; /* 背景设为透明，交由内部元素控制 */
+  box-shadow: var(--campus-shadow-deep, 0 10px 20px rgba(102, 136, 255, 0.2)) !important;
+  overflow: hidden; /* 隐藏内部溢出的部分，确保圆角生效 */
+}
+
+/* 7.2) 弹窗标题栏 */
+/* 说明: 美化弹窗顶部的标题区域，使其与页面面板标题风格统一。 */
+.my-special-layer .layui-layer-title {
+  height: 50px !important;
+  line-height: 50px !important;
+  padding: 0 20px !important;
+  background-color: var(--campus-white, #fdfdff) !important;
+  color: var(--campus-text-dark, #223366) !important;
+  border-bottom: 1.5px solid var(--campus-secondary, #dce4ff) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+/* 标题栏左侧的紫色装饰条，通过伪元素实现，与页面设计完美呼应 */
+.my-special-layer .layui-layer-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px; /* 装饰条宽度 */
+  background-color: var(--campus-accent, #c3b4fc) !important;
+  border-radius: 4px 0 0 4px; /* 左侧圆角 */
+}
+/* 微调标题文字，给装饰条留出空间 */
+.my-special-layer .layui-layer-title {
+  padding-left: 30px !important; /* 20px(原内边距) + 5px(装饰条) + 5px(间距) */
+}
+
+/* 7.3) 弹窗内容区 */
+/* 说明: 这是包含我们自定义HTML的区域，layer.js会自动给它一个叫 'layui-layer-content' 的class。 */
+.my-special-layer .layui-layer-content {
+  background-color: var(--campus-white, #fdfdff) !important;
+}
+
+/* 7.4) 我们自定义的 iframe 外部容器 */
+/* 说明: 这是我们在JS中用HTML字符串创建的、包裹iframe的div。 */
+.custom-iframe-popup {
+  box-sizing: border-box; /* 让内边距和边框不影响盒子总宽高 */
+  width: 100%;
+  height: 100%;
+  padding: 20px; /* 在 iframe 周围留出舒适的内边距 */
+  background-color: #f7faff; /* 使用与输入框一致的背景色，营造柔和感 */
+}
+
+/* 7.5) 容器内部的 iframe 本身 */
+/* 说明: 这是最终显示网页内容的iframe。 */
+.custom-iframe-popup iframe {
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid var(--campus-secondary, #dce4ff) !important; /* 与输入框边框一致 */
+  border-radius: 8px !important; /* 与输入框圆角一致 */
+  background-color: #fff; /* iframe加载内容前的背景色 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 添加一个非常柔和的内阴影 */
+}
+
+/* 7.6) 弹窗右上角的关闭按钮 */
+/* 说明: 美化默认的关闭按钮，使其更符合二次元风格。 */
+.my-special-layer .layui-layer-ico.layui-layer-close {
+  width: 30px !important;
+  height: 30px !importnat;
+  background-color: #f0f2f5 !important;
+  border-radius: 50% !important; /* 变为圆形 */
+  transition: all 0.3s ease;
+}
+.my-special-layer .layui-layer-ico.layui-layer-close:hover {
+  background-color: var(--campus-accent, #c3b4fc) !important;
+  transform: rotate(90deg); /* 增加旋转动效 */
+  /* 通过filter改变关闭按钮(X)的颜色 */
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
+
+/* ===============================
+   分类按钮美化 - 二次元校园风格
+   =============================== */
+#add .category-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 6px 10px;      /* 水平间距 + 垂直间距 */
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1.5px solid var(--campus-secondary);
+    background-color: var(--campus-white);
+    color: var(--campus-text-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    padding: 6px 14px;     /* 保持按钮高度和内边距 */
+}
+
+/* 鼠标悬停效果 */
+#add .category-button:hover {
+    background-color: var(--campus-secondary);
+    color: var(--campus-text-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+/* 选中状态 */
+#add .category-button.selected {
+    background-color: var(--campus-accent);
+    border-color: var(--campus-accent);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(175,146,255,0.4);
+}
+
+/* 推荐按钮标记 */
+#add .category-button.recommend::after {
+    content: "🔥";
+    margin-left: 4px;
+    font-size: 12px;
+}
+
+
+/* ===============================
+   清空按钮美化 - 与查询/提交一致
+   =============================== */
+#add .btn-clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;           /* 与查询/提交按钮保持一致 */
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1.5px solid var(--campus-secondary);
+    background-color: var(--campus-white);
+    color: var(--campus-text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+/* 悬停效果 */
+#add .btn-clear:hover {
+    background-color: var(--campus-secondary);
+    color: var(--campus-text-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+/* 图标与文字间距 */
+#add .btn-clear i {
+    margin-right: 4px;
+    font-size: 13px;
+}

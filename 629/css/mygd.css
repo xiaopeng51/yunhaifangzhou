@@ -1,0 +1,437 @@
+/* ===================================================================
+ * 文件: css/mygd.css
+ * 描述: 工单系统专属样式表 (最终完整版)
+ * 特性: 适配左侧菜单伸缩、聊天气泡左右区分、玻璃拟态风格
+ * =================================================================== */
+
+/* -----------------------------------------------------------
+ * 1. 全局容器与变量定义
+ * ----------------------------------------------------------- */
+#user-gongdan {
+    /* 主题色变量 - 蓝紫色系 */
+    --gd-primary: #a6b8ff;       /* 主按钮浅蓝 */
+    --gd-primary-dark: #7366ff;  /* 强调色深紫 */
+    --gd-secondary: #dce4ff;     /* 边框辅助色 */
+    --gd-text-dark: #223366;     /* 深色文字 */
+    --gd-text-light: #5566aa;    /* 浅色文字 */
+    --gd-bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%); /* 背景渐变 */
+    --gd-card-bg: rgba(255, 255, 255, 0.95); /* 卡片半透明白 */
+    
+    /* 容器基础样式 */
+    font-family: 'Microsoft YaHei', sans-serif;
+    color: var(--gd-text-dark);
+    padding: 20px;
+    background: var(--gd-bg-gradient);
+    border-radius: 20px;
+    min-height: 80vh;
+    
+    /* [核心修复] 布局适配左侧菜单 */
+    width: 100%;             /* 占满父容器 */
+    box-sizing: border-box;  /* 边框计算在宽度内，防止溢出 */
+}
+
+/* -----------------------------------------------------------
+ * 2. 标题与通用卡片
+ * ----------------------------------------------------------- */
+/* 页面大标题 */
+#user-gongdan .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    border-left: 5px solid var(--gd-primary-dark);
+}
+
+/* 通用卡片样式 (搜索框、列表、内容块) */
+#user-gongdan .search-form,
+#user-gongdan .ticket-list,
+#user-gongdan .modal-content,
+#user-gongdan .card {
+    background: var(--gd-card-bg);
+    border: 1px solid var(--gd-secondary);
+    box-shadow: 0 5px 15px rgba(102, 136, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+/* -----------------------------------------------------------
+ * 3. 搜索表单与按钮
+ * ----------------------------------------------------------- */
+#user-gongdan .search-form {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+#user-gongdan label {
+    font-weight: bold;
+    color: var(--gd-text-light);
+    margin-right: 5px;
+}
+
+/* 按钮基础样式 */
+#user-gongdan button {
+    border: none;
+    border-radius: 25px;
+    padding: 8px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    outline: none;
+    font-size: 14px;
+}
+
+/* 查询按钮 */
+#user-gongdan .search-btn {
+    background: var(--gd-primary);
+    color: white;
+}
+#user-gongdan .search-btn:hover {
+    background: var(--gd-primary-dark);
+    transform: translateY(-2px);
+}
+
+/* 添加工单按钮 (渐变色，靠右显示) */
+#user-gongdan .add-ticket-btn {
+    background: linear-gradient(135deg, #7366ff 0%, #a6b8ff 100%);
+    color: white;
+    margin-left: auto; /* 核心：自动挤到最右边 */
+    box-shadow: 0 4px 10px rgba(115, 102, 255, 0.4);
+}
+#user-gongdan .add-ticket-btn:hover {
+    box-shadow: 0 6px 15px rgba(115, 102, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+/* 列表操作按钮 (小尺寸) */
+#user-gongdan .action-btn {
+    margin-right: 5px;
+    color: white;
+    padding: 5px 12px;
+    font-size: 12px;
+}
+#user-gongdan .view-btn { background: #a6b8ff; }
+#user-gongdan .delete-btn { background: #ff7675; }
+
+/* 提交大按钮 */
+#user-gongdan .submit-btn {
+    width: 100%;
+    margin-top: 15px;
+    background: var(--gd-primary-dark);
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+}
+#user-gongdan .submit-btn:hover {
+    background: #5b4ddb;
+}
+
+/* -----------------------------------------------------------
+ * 4. 输入框样式
+ * ----------------------------------------------------------- */
+#user-gongdan input[type="text"],
+#user-gongdan select,
+#user-gongdan textarea,
+#user-gongdan input[type="file"] {
+    padding: 10px;
+    border: 1px solid var(--gd-secondary);
+    border-radius: 8px;
+    background: #fbfdff;
+    outline: none;
+    box-sizing: border-box; /* 宽度包含内边距 */
+}
+#user-gongdan input:focus, #user-gongdan textarea:focus {
+    border-color: var(--gd-primary-dark);
+}
+
+/* -----------------------------------------------------------
+ * 5. 表格样式
+ * ----------------------------------------------------------- */
+#user-gongdan table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#user-gongdan th {
+    background: rgba(166, 184, 255, 0.2);
+    padding: 15px;
+    text-align: center;
+    color: var(--gd-text-dark);
+}
+#user-gongdan td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f4ff;
+    text-align: center;
+    color: #666;
+}
+/* 鼠标悬停行变色 */
+#user-gongdan tr:hover td {
+    background-color: #fcfdff;
+}
+
+/* -----------------------------------------------------------
+ * 6. 弹窗样式 (.gd-modal 核心修复)
+ * ----------------------------------------------------------- */
+.gd-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30, 40, 70, 0.6); /* 深色遮罩 */
+    backdrop-filter: blur(4px);              /* 毛玻璃背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999 !important; /* [核心] 确保在所有框架之上 */
+}
+
+#user-gongdan .modal-content {
+    background: #fff;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh; /* 最大高度 */
+    overflow-y: auto; /* 允许滚动 */
+    padding: 30px;
+    position: relative;
+    animation: modalSlide 0.3s ease-out;
+}
+
+@keyframes modalSlide {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* 关闭按钮 */
+#user-gongdan .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10;
+}
+#user-gongdan .close:hover { color: #333; }
+
+#user-gongdan .modal-title {
+    text-align: center;
+    color: var(--gd-primary-dark);
+    margin-top: 0;
+    border-bottom: 1px dashed var(--gd-secondary);
+    padding-bottom: 15px;
+}
+
+/* -----------------------------------------------------------
+ * 7. 工单详情信息列表
+ * ----------------------------------------------------------- */
+#user-gongdan .ticket-info { padding: 20px; }
+#user-gongdan .ticket-info h4 {
+    margin-top: 0;
+    border-left: 4px solid var(--gd-primary-dark);
+    padding-left: 10px;
+    color: var(--gd-text-dark);
+}
+
+/* 字段列表美化 */
+#user-gongdan .ticket-info p {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px dashed #f0f4ff;
+    font-size: 14px;
+    line-height: 1.6;
+    display: flex; /* 让标签和内容对齐 */
+}
+#user-gongdan .ticket-info p strong {
+    min-width: 80px; /* 标签固定宽度 */
+    color: #555;
+}
+#user-gongdan .attachment-img {
+    max-width: 100%;
+    max-height: 200px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+/* -----------------------------------------------------------
+ * 8. 回复记录 (聊天气泡核心逻辑)
+ * ----------------------------------------------------------- */
+.reply-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
+/* 气泡基础样式 */
+.reply-item { 
+    padding: 15px; 
+    margin-bottom: 15px; 
+    border-radius: 12px; 
+    font-size: 14px; 
+    line-height: 1.6;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: relative;
+    max-width: 85%; /* 气泡不占满整行 */
+    word-wrap: break-word;
+}
+
+/* 图片附件 */
+.reply-img-box img {
+    max-width: 100%;
+    max-height: 150px;
+    margin-top: 10px;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* 身份信息 (顶部小字) */
+.reply-meta { 
+    font-size: 12px; 
+    color: #666; 
+    margin-bottom: 6px; 
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+/* --- 场景1: 用户 (靠右，蓝色) --- */
+.reply-item.user { 
+    background: linear-gradient(135deg, #e0e7ff 0%, #dce4ff 100%); /* 蓝背景 */
+    border: 1px solid #c8d3fa;
+    color: #223366;
+    
+    /* 靠右显示 */
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+    border-top-right-radius: 2px; /* 右上角尖角 */
+}
+
+/* --- 场景2: 管理员 (靠左，黄色) --- */
+.reply-item.admin { 
+    background: #fffbe6;       /* 黄背景 */
+    border: 1px solid #ffe58f;
+    color: #555;
+    
+    /* 靠左显示 */
+    margin-right: auto;
+    margin-left: 0;
+    text-align: left;
+    border-top-left-radius: 2px; /* 左上角尖角 */
+}
+.reply-item.admin .reply-meta { color: #d48806; }
+
+/* --- 场景3: 作者/供货商 (靠左，紫色) --- */
+.reply-item.author { 
+    background: #f9f0ff;       /* 紫背景 */
+    border: 1px solid #d3adf7;
+    color: #555;
+    
+    /* 靠左显示 */
+    margin-right: auto;
+    margin-left: 0;
+    text-align: left;
+    border-top-left-radius: 2px;
+}
+.reply-item.author .reply-meta { color: #722ed1; }
+
+
+/* -----------------------------------------------------------
+ * 9. 其他辅助样式
+ * ----------------------------------------------------------- */
+/* 警告提示框 */
+#user-gongdan .conversation-warning {
+    background: #fff3cd;
+    color: #856404;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #ffeeba;
+}
+
+/* 上传状态文字 */
+.upload-status-success { color: #00b894; font-size: 12px; margin-top: 5px; }
+.upload-status-error { color: #ff7675; font-size: 12px; margin-top: 5px; }
+
+/* 分页 */
+#user-gongdan .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+#user-gongdan .pagination button {
+    background: white;
+    border: 1px solid var(--gd-secondary);
+    color: var(--gd-text-dark);
+}
+#user-gongdan .pagination button:hover:not(:disabled) {
+    border-color: var(--gd-primary-dark);
+    color: var(--gd-primary-dark);
+}
+#user-gongdan .pagination button:disabled {
+    background: #eee;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+
+/* -----------------------------------------------------------
+ * 10. 页面顶部常驻提示条
+ * ----------------------------------------------------------- */
+#user-gongdan .gd-page-notice {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--gd-secondary);
+    border-left: 4px solid var(--gd-primary-dark); /* 强调左边框 */
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(115, 102, 255, 0.08);
+    backdrop-filter: blur(5px);
+    animation: slideDown 0.5s ease-out; /* 入场动画 */
+}
+
+#user-gongdan .notice-icon {
+    color: var(--gd-primary-dark);
+    font-size: 18px;
+    /* 赋予图标微弱的呼吸动画，吸引注意力但不刺眼 */
+    animation: iconPulse 2s infinite;
+}
+
+#user-gongdan .notice-text {
+    color: var(--gd-text-dark);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* 入场动画 */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 图标呼吸动画 */
+@keyframes iconPulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 适配移动端 */
+@media (max-width: 768px) {
+    #user-gongdan .gd-page-notice {
+        padding: 10px 15px;
+    }
+    #user-gongdan .notice-text {
+        font-size: 13px;
+    }
+}

@@ -1,0 +1,185 @@
+/* ===================================================================
+ * 文件: head.css - 最终稳定版
+ * 描述: 2025年风格的全新导航栏样式，带'head-'前缀防止冲突。
+ *      本版本已整合所有修复，功能稳定，动画流畅。
+ * =================================================================== */
+
+
+/* ===================================================================
+ * 1. 导航栏专属设计变量
+ * 描述: 在这里统一管理颜色、阴影、速度等，方便一键换肤。
+ * =================================================================== */
+:root {
+  /* 基础颜色，直接引用您提供的变量 */
+  --head-primary-color: #a6b8ff;      /* 主色调, 用于激活项和悬停 */
+  --head-secondary-bg: #f0f4ff;      /* 辅助背景色 */
+  --head-text-dark: #223366;         /* 主要文字颜色 */
+  --head-text-light: #5566aa;        /* 次要文字/图标颜色 */
+  --head-white: #ffffff;             /* 白色 */
+  --head-border-color: rgba(166, 184, 255, 0.3); /* 边框颜色 */
+  --head-shadow: 0 8px 25px rgba(102, 136, 255, 0.1); /* 柔和阴影 */
+  --head-card-bg: rgba(255, 255, 255, 0.75); /* 卡片背景, 带透明和模糊 */
+  --head-hover-bg: rgba(224, 231, 255, 0.6);  /* 悬停背景色 */
+  --head-transition-speed: 0.3s;     /* 统一的过渡动画速度 */
+}
+
+
+/* ===================================================================
+ * 2. 侧边栏主体和布局
+ * 描述: 定义侧边栏的整体外观和层级。
+ * =================================================================== */
+
+/* 侧边栏主容器 */
+.head-modern-sidebar.lyear-layout-sidebar {
+  background: var(--head-card-bg);
+  backdrop-filter: blur(12px); /* 关键：玻璃模糊效果 */
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid var(--head-border-color);
+  box-shadow: var(--head-shadow);
+  transition: all var(--head-transition-speed) ease;
+  
+  /* 修复：设置一个较高的层级，确保在内容区和头部之上，防止被遮挡无法点击 */
+  /*z-index: 1000;*/
+}
+
+/* 移除旧样式可能带来的影响 */
+.head-modern-sidebar .sidebar-main .nav-drawer,
+.head-modern-sidebar .sidebar-main .nav-subnav {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* 导航菜单的滚动容器 */
+.head-modern-sidebar .lyear-layout-sidebar-scroll {
+    padding: 10px; /* 给菜单列表的上下左右留出一些呼吸空间 */
+    
+    /* ★★★ 最终核心修复：夺回滚动条控制权 ★★★ */
+    /* 使用 !important 来覆盖框架中可能存在的霸道规则 */
+    height: 100% !important;
+    overflow-y: auto !important;
+}
+
+
+/* ===================================================================
+ * 3. 菜单项样式 (一、二、三级通用和独立样式)
+ * 描述: 定义每一个菜单链接的外观和交互效果。
+ * =================================================================== */
+
+/* 所有菜单项链接的基础样式 */
+.head-modern-sidebar .nav-item > a {
+    display: flex;
+    align-items: center;
+    padding: 7px 15px; /* 紧凑布局 */
+    margin: 1px 0; 
+    border-radius: 10px;
+    font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--head-text-dark);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--head-transition-speed) ease;
+}
+
+/* 鼠标悬停效果 */
+.head-modern-sidebar .nav-item > a:hover {
+    background: var(--head-hover-bg);
+    color: var(--head-text-dark);
+    transform: scale(1.05) translateX(5px); /* 悬停时放大并轻微右移 */
+    box-shadow: var(--head-shadow); 
+}
+.head-modern-sidebar .nav-item > a:hover .susuicon {
+    color: var(--head-primary-color);
+}
+
+/* 当前激活/打开的父菜单样式 */
+.head-modern-sidebar .nav-item-has-subnav > a[aria-expanded="true"] {
+    background: var(--head-secondary-bg);
+    font-weight: bold;
+}
+
+/* --- 图标样式 --- */
+
+/* 菜单项主图标 */
+.head-modern-sidebar .susuicon {
+    position: static;
+    width: 1.4em;
+    height: 1.4em;
+    margin-right: 12px;
+    color: var(--head-text-light);
+    vertical-align: middle;
+    transition: all var(--head-transition-speed) ease;
+}
+
+/* 箭头图标 - 默认状态 (折叠) */
+.head-modern-sidebar .susuicon2 {
+    position: static;
+    margin-left: auto;
+    width: 1em;
+    height: 1em;
+    color: var(--head-text-light);
+    transition: transform var(--head-transition-speed) ease-in-out;
+    /* 修复：初始为向右箭头(▶)，符合用户直觉 */
+    transform: rotate(-90deg);
+}
+
+/* 菜单展开时，箭头旋转回原样 */
+.head-modern-sidebar a[aria-expanded="true"] .susuicon2 {
+    /* 修复：展开时为向下箭头(▼) */
+    transform: rotate(0deg);
+}
+
+
+/* --- 子菜单样式 --- */
+
+/* 子菜单容器的统一样式 (恢复使用 max-height 动画) */
+.head-modern-sidebar .nav-subnav {
+    margin-left: 10px;
+    padding-left: 15px;
+    border-left: 2px solid var(--head-secondary-bg);
+    overflow: hidden;
+    max-height: 0; /* 默认折叠 */
+    transition: max-height 0.4s ease-in-out; /* 平滑展开/折叠动画 */
+}
+
+/* 二级菜单链接 */
+.head-modern-sidebar .nav-subnav > .nav-item > a {
+    font-size: 13px;
+    padding-left: 10px;
+}
+
+/* 三级菜单容器 */
+.head-modern-sidebar .nav-subnav .nav-subnav {
+    margin-left: 15px;
+}
+
+/* 三级菜单链接 */
+.head-modern-sidebar .nav-subnav .nav-subnav > .nav-item > a {
+    font-size: 12px;
+}
+
+
+/* ===================================================================
+ * 4. 辅助样式和旧样式覆盖
+ * =================================================================== */
+
+.head-modern-sidebar .nav>li:hover {
+    background-color: transparent;
+}
+.head-modern-sidebar hr {
+    display: none;
+}
+
+/* 美化滚动条 */
+.head-modern-sidebar .lyear-layout-sidebar-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.head-modern-sidebar .lyear-layout-sidebar-scroll::-webkit-scrollbar-thumb {
+    background: var(--head-border-color);
+    border-radius: 10px;
+}
+.head-modern-sidebar .lyear-layout-sidebar-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--head-primary-color);
+}

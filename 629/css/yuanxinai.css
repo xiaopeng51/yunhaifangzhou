@@ -1,0 +1,300 @@
+/* ===================================================================
+ * 文件: yuanxinai-campus-style.css
+ * 描述: 元心AI聊天页面 - 2025校园活力风 (根据用户反馈最终优化版)
+ * 特点: 清晰布局、自适应气泡、丰富装饰、明快色彩
+ * =================================================================== */
+
+/* ===================================================================
+ * 1. 全局设计变量 - 天空校园主题
+ * =================================================================== */
+#yuanxinai {
+  /* 主色调: 晴朗的天空蓝 */
+  --sky-primary: #89CFF0;
+  /* 辅色调: 更柔和的淡蓝 */
+  --sky-secondary: #E0F7FA;
+  /* 点缀色: 充满活力的柠檬黄 */
+  --sky-accent: #FFD700;
+  /* 深色文字: 易于阅读的深灰蓝 */
+  --sky-text-dark: #3D5A80;
+  /* 浅色文字/提示 (修正 #2: 改为更深的颜色以提高可读性) */
+  --sky-text-light: #5A789A;
+  /* 白色背景 */
+  --sky-white: #FFFFFF;
+  /* 聊天区域的专属背景色 */
+  --sky-bg-chat: #F0F9FF;
+
+  /* 阴影效果 */
+  --shadow-subtle: 0 2px 8px rgba(61, 90, 128, 0.08); /* 轻微阴影 */
+  --shadow-card: 0 5px 15px rgba(61, 90, 128, 0.12);  /* 卡片阴影 */
+  
+  /* 动画过渡 */
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ===================================================================
+ * 2. 页面整体布局与装饰
+ * =================================================================== */
+#yuanxinai.wrapper-md {
+  background-color: #f4f8fe;
+  background-image: 
+    radial-gradient(circle at 1% 1%, rgba(137, 207, 240, 0.15) 1px, transparent 1px),
+    radial-gradient(circle at 99% 99%, rgba(137, 207, 240, 0.15) 1px, transparent 1px);
+  background-size: 30px 30px;
+  padding: 15px;
+  font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+#yuanxinai::before {
+  content: '☁️';
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 50px;
+  opacity: 0.15;
+  transform: rotate(15deg);
+  z-index: 0;
+}
+
+/* ===================================================================
+ * 3. 核心聊天面板 - 卡片化设计
+ * =================================================================== */
+#yuanxinai .panel.panel-default.chat-wrapper {
+  background: var(--sky-white);
+  border-radius: 24px;
+  border: 1px solid #EAF2F8;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#yuanxinai .panel-heading {
+  background: linear-gradient(to right, #f0f9ff, #e6f5fd);
+  color: var(--sky-text-dark);
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 18px 25px;
+  border-bottom: 1px solid #EAF2F8;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===================================================================
+ * 8. 公告栏美化 - 【根据反馈修正】
+ * =================================================================== */
+/* 修正 #1: 为公告栏增加清晰的边框和阴影，使其成为一个独立的卡片 */
+#yuanxinai .announcement-banner {
+    margin: 15px 25px 5px 25px; /* 调整外边距 */
+    background: linear-gradient(135deg, #fff9e6, #fff5f5); /* 使用更柔和的暖色调 */
+    color: #c28e00; /* 匹配背景的文字颜色 */
+    border: 1px solid #FFF1C2; /* 清晰的边框 */
+    border-radius: 16px;
+    padding: 15px 20px;
+    box-shadow: var(--shadow-subtle); /* 增加轻微阴影 */
+    display: flex;
+    align-items: center;
+}
+#yuanxinai .announcement-banner h4 { color: #b57d00; font-weight: bold; }
+#yuanxinai .announcement-banner p { color: #c28e00; margin-bottom: 5px; }
+#yuanxinai .announcement-banner .icon { font-size: 24px; margin-right: 15px; }
+#yuanxinai .announcement-banner .close-btn { color: #c28e00; }
+
+/* ===================================================================
+ * 4. 表单控件 - 直观且友好
+ * =================================================================== */
+#yuanxinai .form-group {
+  padding: 0 25px;
+}
+
+#yuanxinai .form-group label {
+  color: var(--sky-text-dark);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#yuanxinai .form-control,
+#yuanxinai select,
+#yuanxinai input[type="number"] {
+  background-color: #F8FAFC !important;
+  color: var(--sky-text-dark) !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px;
+  padding: 10px 15px;
+  box-shadow: var(--shadow-subtle) !important;
+  transition: var(--transition-smooth);
+}
+
+#yuanxinai .form-control:focus,
+#yuanxinai select:focus,
+#yuanxinai input[type="number"]:focus {
+  border-color: var(--sky-primary) !important;
+  background-color: var(--sky-white) !important;
+  box-shadow: 0 0 0 3px rgba(137, 207, 240, 0.3) !important;
+}
+
+/* ===================================================================
+ * 9. 提示文字颜色 - 【根据反馈修正】
+ * =================================================================== */
+/* 修正 #2: 将所有提示性文字统一为更清晰的深灰蓝色 */
+#yuanxinai .text-muted, 
+#yuanxinai .small,
+#yuanxinai .text-muted.small.mt-2 {
+    color: var(--sky-text-light) !important;
+    font-weight: 500;
+}
+
+/* ===================================================================
+ * 5. 聊天记录区域
+ * =================================================================== */
+#yuanxinai #chat-history {
+  background-color: var(--sky-bg-chat);
+  flex-grow: 1;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 15px;
+  box-shadow: inset 0 4px 8px rgba(61, 90, 128, 0.05);
+  margin: 15px 25px;
+  border-radius: 16px;
+  border: 1px solid #EAF2F8 !important;
+}
+
+#yuanxinai #chat-history::-webkit-scrollbar { width: 8px; }
+#yuanxinai #chat-history::-webkit-scrollbar-track { background: transparent; }
+#yuanxinai #chat-history::-webkit-scrollbar-thumb {
+  background: #B0D9EC;
+  border-radius: 10px;
+}
+#yuanxinai #chat-history::-webkit-scrollbar-thumb:hover { background: var(--sky-primary); }
+
+/* ===================================================================
+ * 6. 聊天气泡布局与样式
+ * =================================================================== */
+@keyframes bubble-pop-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+#yuanxinai .chat-message-container {
+  display: flex;
+  padding: 0 5px;
+  margin-top: 10px;
+  animation: bubble-pop-in 0.3s ease-out forwards;
+}
+#yuanxinai .chat-message-container.user {
+  justify-content: flex-end;
+}
+#yuanxinai .chat-message-container.ai {
+  justify-content: flex-start;
+}
+
+#yuanxinai .chat-bubble {
+  max-width: 75%;
+  padding: 10px 16px;
+  border-radius: 18px;
+  line-height: 1.6;
+  box-shadow: var(--shadow-subtle);
+  border: 1px solid transparent;
+  text-align: left;
+}
+
+#yuanxinai .chat-bubble.user {
+  background: var(--sky-primary);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+#yuanxinai .chat-bubble.ai {
+  background: var(--sky-white);
+  color: var(--sky-text-dark);
+  border-bottom-left-radius: 4px;
+  border-color: #EAF2F8;
+}
+
+/* ===================================================================
+ * 10. 按钮样式 - 【根据反馈修正】
+ * =================================================================== */
+#yuanxinai .message-actions-visible {
+  display: flex;
+  padding: 6px 5px 10px 5px;
+  gap: 8px;
+}
+#yuanxinai .user + .message-actions-visible {
+  justify-content: flex-end;
+}
+#yuanxinai .ai + .message-actions-visible {
+  justify-content: flex-start;
+}
+/* 修正 #3A: 聊天内容中的按钮，改为白色背景，使其在淡蓝色背景上更突出 */
+#yuanxinai .message-actions-visible .btn-xs {
+  background: var(--sky-white); /* 白色背景 */
+  border: 1px solid #EAF2F8;
+  border-radius: 20px;
+  padding: 3px 10px;
+  color: var(--sky-text-light); /* 使用提示文字颜色 */
+  font-size: 12px;
+  transition: var(--transition-smooth);
+}
+#yuanxinai .message-actions-visible .btn-xs:hover {
+  color: var(--sky-primary);
+  border-color: var(--sky-primary);
+  box-shadow: var(--shadow-subtle);
+  transform: translateY(-1px);
+}
+
+/* 修正 #3B: 美化 "编辑名称" 和 "删除对话" 按钮 */
+#yuanxinai .form-group.text-right .btn-sm {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    color: var(--sky-text-light);
+    border-radius: 10px;
+    font-weight: 500;
+    padding: 5px 12px;
+    font-size: 13px;
+    transition: var(--transition-smooth);
+}
+#yuanxinai .form-group.text-right .btn-sm:hover {
+    color: var(--sky-text-dark);
+    border-color: var(--sky-text-light);
+    box-shadow: var(--shadow-subtle);
+}
+
+/* ===================================================================
+ * 7. 底部输入区域
+ * =================================================================== */
+#yuanxinai .input-group {
+  padding: 15px 25px 20px 25px;
+  border-top: 1px solid #EAF2F8;
+  gap: 15px;
+}
+#yuanxinai .adaptive-textarea {
+  min-height: 48px;
+  border-radius: 14px;
+  resize: none;
+  background-color: var(--sky-white) !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* 修正 #4: 发送按钮文字颜色改为深色，避免刺眼 */
+#yuanxinai .input-group .btn-primary {
+  background: var(--sky-accent);
+  color: var(--sky-text-dark); /* 使用统一的深色文字 */
+  border-radius: 14px;
+  font-weight: bold;
+  height: 48px;
+  padding: 0 25px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+  transition: var(--transition-smooth);
+}
+#yuanxinai .input-group .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 215, 0, 0.5);
+  filter: brightness(1.05);
+}
